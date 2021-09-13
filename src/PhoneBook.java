@@ -73,8 +73,8 @@ public class PhoneBook {
     private void findNumber(Map<String, String> phoneBook, String userText) {
         Collection<String> collection = phoneBook.keySet();
         for(String number: collection){
-            Object obj = phoneBook.get(number);
-            if(userText.equals(obj)){
+            String name = phoneBook.get(number);
+            if(userText.equals(name)){
                 System.out.printf("phone: %s\tname: %s\n", number, userText);
             }
         }
@@ -124,15 +124,7 @@ public class PhoneBook {
     }
 
     private String getNumber(String text){
-        String number = text.replace(" ","");
-        number = number.replace("-","");
-        number = number.replace("_","");
-        number = number.replace(":","");
-        number = number.replace("=","");
-        number = number.replace("+","");
-        number = number.replace("(","");
-        number = number.replace(")","");
-        return number;
+        return text.replaceAll("[- _:=+()]","");
     }
 
     private String readCommand(String userText) {
